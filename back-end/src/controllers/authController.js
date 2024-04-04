@@ -1,14 +1,18 @@
+const express = require('express');
 const authService = require('../services/authService');
 
-function login(req, res) {
-  const { username, password } = req.body;
-  const user = authService.authenticate({ username, password });
-  if (user) {
-    const token = authService.generateToken(user);
-    res.status(201).json({ token });
+const router = express.Router();
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  const info = await authService.authenticate({ email, password });
+  console.log(info)
+  if (info) {
+    console.log(info);
+    res.status(200).json(info);
   } else {
     res.status(401).json({ message: 'Credenciais inválidas' });
   }
-}
+});
 
-module.exports = { login };
+module.exports = router;

@@ -1,6 +1,11 @@
+const express = require('express');
 const mathService = require('../services/mathService');
+const authMiddleware = require('../middleware/authMiddleware');
 
-function realizarOperacao(req, res) {
+const router = express.Router();
+// router.use(authMiddleware); por algum motivo ele está aplicando em todos endpoints
+
+router.post('/math', (req, res) => {
   const { num1, num2, operacao } = req.body;
   try {
     const resultado = mathService.calcularOperacao(num1, num2, operacao);
@@ -8,6 +13,6 @@ function realizarOperacao(req, res) {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+});
 
-module.exports = { realizarOperacao };
+module.exports = router;

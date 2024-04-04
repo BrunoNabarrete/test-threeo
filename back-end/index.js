@@ -1,20 +1,28 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const authController = require('./src/controllers/authController');
+const createConnection = require('./src/mongoDb');
+const mathRouter = require('./src/controllers/mathController');
+const authRouter = require('./src/controllers/authController');
+const userRouter = require('./src/controllers/userController');
 const authMiddleware = require('./src/middleware/authMiddleware');
-const mathController = require('./src/controllers/mathController');
 
 const app = express();
-app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Olá, mundo!' });
-})
+async function bootstrap() {
+  await createConnection();
 
-app.post('/login', authController.login);
+  app.use(bodyParser.json());
+  app.use(authRouter);
+  app.use('/math', authMiddleware, mathRouter);
+  app.use(userRouter);
+  
+  app.get('/', (req, res) => {
+    res.json({ message: 'Olá, mundo!' });
+  });
+  
+  app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
+  });
+}
 
-app.post('/math', authMiddleware, mathController.realizarOperacao);
-
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
-});
+bootstrap();
