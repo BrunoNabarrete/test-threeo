@@ -1,9 +1,7 @@
 const express = require('express');
 const mathService = require('../services/mathService');
-const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
-// router.use(authMiddleware); por algum motivo ele está aplicando em todos endpoints
 
 router.post('/', (req, res) => {
   const { num1, num2, operacao } = req.body;

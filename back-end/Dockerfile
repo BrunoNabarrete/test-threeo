@@ -13,6 +13,10 @@ RUN npm install
 # Copie o restante do código-fonte para o diretório de trabalho
 COPY . .
 
+RUN rm .env
+
+RUN cp .env.docker .env
+
 # Expõe a porta 3000 para que a aplicação possa ser acessada externamente
 EXPOSE 3000
 

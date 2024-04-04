@@ -1,10 +1,13 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
-const createConnection = require('./src/mongoDb');
-const mathRouter = require('./src/controllers/mathController');
-const authRouter = require('./src/controllers/authController');
-const userRouter = require('./src/controllers/userController');
-const authMiddleware = require('./src/middleware/authMiddleware');
+const createConnection = require('./mongoDb');
+const mathRouter = require('./controllers/mathController');
+const authRouter = require('./controllers/authController');
+const userRouter = require('./controllers/userController');
+const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
 
