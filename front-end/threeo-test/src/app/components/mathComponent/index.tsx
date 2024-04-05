@@ -6,20 +6,57 @@ import threeoImage from "../../../../public/logo-site_threeo.png";
 export default function CreateAccountComponent() {
   const [expression, setExpression] = useState("");
   const [result, setResult] = useState("");
+  const [numero1, setNumero1] = useState("");
+  const [numero2, setNumero2] = useState("");
+  const [operator, setOperator] = useState("");
 
   const handleButtonClick = (value: string) => {
-    if (value === "=") {
-      try {
-        const calculatedResult = eval(expression);
-        setResult(calculatedResult);
-      } catch (error) {
-        setResult("Erro");
+    if (!isNaN(Number(value))) {
+      setExpression((prevExpression) => prevExpression + value);
+      if (!operator) {
+        setNumero1((prevNumero1) => prevNumero1 + value);
+      } else {
+        setNumero2((prevNumero2) => prevNumero2 + value);
       }
+    } else if (value === "=") {
+      setExpression((prevExpression) => prevExpression + value);
     } else if (value === "C") {
       setExpression("");
       setResult("");
+      setNumero1("");
+      setNumero2("");
+      setOperator("");
     } else {
       setExpression((prevExpression) => prevExpression + value);
+      setOperator(value);
+    }
+  };
+
+  const handleMathOperation = async () => {
+    const token = localStorage.getItem("token");
+    const num1 = parseFloat(numero1);
+    const num2 = parseFloat(numero2);
+    const operacao = operator;
+    console.log(num1, num2, operacao);
+    try {
+      const response = await fetch("http://localhost:3000/math", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          num1,
+          num2,
+          operacao,
+        }),
+      });
+      const data = await response.json();
+      setResult(data.resultado);
+      console.log(data.resultado);
+    } catch (error) {
+      console.error(error);
+      setResult("Erro");
     }
   };
 
@@ -37,11 +74,21 @@ export default function CreateAccountComponent() {
                 <div className="flex justify-center">
                   <input
                     type="text"
-                    value={result}
+                    value={expression}
                     className="w-full text-right border-b border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5"
                     readOnly
                   />
                 </div>
+                {result !== "" && ( 
+                  <div className="flex justify-center">
+                    <input
+                      type="text"
+                      value={result}
+                      className="w-full text-right border-b border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5"
+                      readOnly
+                    />
+                  </div>
+                )}
                 <div className="grid grid-cols-4 gap-2">
                   <button className={`bg-gray-500 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5`} onClick={() => handleButtonClick("7")}>7</button>
                   <button className={`bg-gray-500 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5`} onClick={() => handleButtonClick("8")}>8</button>
@@ -60,7 +107,7 @@ export default function CreateAccountComponent() {
 
                   <button className={`bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5`} onClick={() => handleButtonClick("C")}>C</button>
                   <button className={`bg-gray-500 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5`} onClick={() => handleButtonClick("0")}>0</button>
-                  <button className={`bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5`} onClick={() => handleButtonClick("=")}>=</button>
+                  <button className={`bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5`} onClick={handleMathOperation}>=</button>
                   <button className={`bg-green-200 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5`} onClick={() => handleButtonClick("/")}>/</button>
                 </div>
               </div>
