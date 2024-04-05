@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const createConnection = require('./mongoDb');
 const mathRouter = require('./controllers/mathController');
@@ -14,6 +15,7 @@ const app = express();
 async function bootstrap() {
   await createConnection();
 
+  app.use(cors());
   app.use(bodyParser.json());
   app.use(authRouter);
   app.use('/math', authMiddleware, mathRouter);
