@@ -1,12 +1,12 @@
 function calcularOperacao(num1, num2, operacao) {
   switch (operacao) {
-    case 'somar':
+    case '+':
       return num1 + num2;
-    case 'subtrair':
+    case '-':
       return num1 - num2;
-    case 'multiplicar':
+    case '*':
       return num1 * num2;
-    case 'dividir':
+    case '/':
       if (num2 === 0) {
         throw new Error('Não é possível dividir por zero');
       }
