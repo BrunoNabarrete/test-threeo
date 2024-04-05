@@ -20,19 +20,17 @@ O projeto Threeo é uma aplicação web que consiste em um conjunto de funcional
 1. **Clonar o Repositório**:
    ```bash
    git clone https://github.com/BrunoNabarrete/threeo.git
-Frontend:
+
+**Frontend:
 
 Navegue até o diretório front-end/threeo-test.
 Execute o comando docker-compose up.
-Backend:
+
+**Backend:
 
 Navegue até o diretório back-end.
 Execute o comando docker-compose up.
-Acesso à Aplicação
+Acesso à Aplicação:
+
 O frontend estará disponível em http://localhost:3002.
 O backend estará disponível em http://localhost:3000.
-Contribuindo
-Se você deseja contribuir para o projeto, sinta-se à vontade para abrir uma issue ou enviar um pull request. Toda contribuição é bem-vinda!
-
-Licença
-Este projeto está licenciado sob a MIT License.
