@@ -69,24 +69,14 @@ export default function CreateAccountComponent() {
                 Bora calcular ?
               </h1>
               <div className="space-y-4">
-                <div className="flex justify-center">
+              <div className="flex justify-center">
                   <input
                     type="text"
-                    value={expression}
-                    className="w-full text-right border-b border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5"
+                    value={result !== "" ? result : expression}
+                    className="w-full text-2xl text-right border-b border-gray-300 text-gray-900 sm:text-2xl rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5"
                     readOnly
                   />
                 </div>
-                {result !== "" && ( 
-                  <div className="flex justify-center">
-                    <input
-                      type="text"
-                      value={result}
-                      className="w-full text-right border-b border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5"
-                      readOnly
-                    />
-                  </div>
-                )}
                 <div className="grid grid-cols-4 gap-2">
                   <button className={`bg-gray-500 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5`} onClick={() => handleButtonClick("7")}>7</button>
                   <button className={`bg-gray-500 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5`} onClick={() => handleButtonClick("8")}>8</button>
