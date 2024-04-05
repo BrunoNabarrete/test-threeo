@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend - Threeo Test
 
-## Getting Started
+Este é o frontend do projeto Threeo Test, uma aplicação web que inclui um sistema de login, criação de conta e uma calculadora.
 
-First, run the development server:
+## Instruções de Uso
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Navegue até o Diretório:**
+   - Para acessar o diretório do frontend, use o comando:
+     ```bash
+     cd front-end/threeo-test
+     ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Execução com Docker:**
+   - Execute o seguinte comando para iniciar a aplicação usando Docker Compose:
+     ```bash
+     docker-compose up
+     ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Acesso à Aplicação:**
+   - Após a execução bem-sucedida, a aplicação estará disponível em [http://localhost:3002](http://localhost:3002).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Recursos
 
-## Learn More
+### Páginas
 
-To learn more about Next.js, take a look at the following resources:
+- **Home (Login):**
+  - A página inicial da aplicação, onde os usuários podem fazer login.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Create Account:**
+  - Página para criar uma nova conta de usuário.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Calculator (Math):**
+  - Página com uma calculadora para realizar operações matemáticas.
 
-## Deploy on Vercel
+## Tecnologias Utilizadas
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- React.js
+- Next.js
+- Tailwind
+- Docker
+- Docker Compose
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contribuindo
+
+Se você deseja contribuir para este projeto, sinta-se à vontade para abrir uma issue ou enviar um pull request. Toda contribuição é bem-vinda!
+
