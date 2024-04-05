@@ -37,7 +37,6 @@ export default function CreateAccountComponent() {
     const num1 = parseFloat(numero1);
     const num2 = parseFloat(numero2);
     const operacao = operator;
-    console.log(num1, num2, operacao);
     try {
       const response = await fetch("http://localhost:3000/math", {
         method: "POST",
@@ -53,7 +52,6 @@ export default function CreateAccountComponent() {
       });
       const data = await response.json();
       setResult(data.resultado);
-      console.log(data.resultado);
     } catch (error) {
       console.error(error);
       setResult("Erro");

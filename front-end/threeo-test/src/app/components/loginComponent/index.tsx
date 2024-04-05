@@ -36,7 +36,6 @@ export default function LoginComponent() {
 
       const data = await response.json();
       const token = data.token;
-      console.log("Login successful, token:", token);
       window.localStorage.setItem("token", token);
       window.location.href = "/math";
     } catch (error) {

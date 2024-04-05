@@ -36,7 +36,6 @@ export default function CreateAccountComponent() {
         }),
       });
       const data = await response.json();
-      console.log(data);
       alert("Conta criada com sucesso");
       window.location.href = "/login";
     } catch (error) {

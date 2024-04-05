@@ -1,10 +1,10 @@
-import Image from "next/image";
+import React from 'react';
+import LoginComponent from '@/app/components/loginComponent';
 
 export default function Home() {
   return (
     <div>
-      <h1>Home</h1>
-      <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+      <LoginComponent/>
     </div>
   );
 }
